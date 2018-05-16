@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Word;
+use Mail;
 
 class DeleteDailyWord extends Command
 {
@@ -43,11 +44,6 @@ class DeleteDailyWord extends Command
             $list[] = $word->text;
             $word->delete();
         }
-        Mail::send('emails.welcome', array('content' => implode(',',$list)), function($message){
-            $message->to('knowrop1208.ymatome@gmail.com')
-            ->subject('タグリスト');
-        });
-
-        echo "done".PHP_EOL;
+        noticeDiscord(implode(',',$list));
     }
 }
