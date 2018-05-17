@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('word:delete')->daily();
         $schedule->command('word:get')->hourly();
-        $schedule->command('youtube:post')->everyTenMinutes();
+        $schedule->command('youtube:post')->everyFiveMinutes();
     }
 
     /**
