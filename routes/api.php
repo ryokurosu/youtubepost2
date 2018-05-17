@@ -22,7 +22,7 @@ Route::get('/post', function(){
   // 現状はわたすデータがないのでエンプティーアレイをわたします
   $data = [];
   Mail::send('emails.welcome', $data, function($message){
-    $message->to('knowrop1208.ymatome@gmail.com')
+    $message->to('knowrop1208.ymatome2@gmail.com')
             ->subject('テスト');
   });
 

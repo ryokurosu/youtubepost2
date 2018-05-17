@@ -82,9 +82,9 @@ class CreateYoutubePost extends Command
         }
         $movie_url = $baseurl.$movie_code;
         $rank = $index + 1;
-        $ret_data .= "<h2>【{$rank}位】{$movie_title}</h2>" . PHP_EOL. PHP_EOL;
-        $ret_data .= '<div class="youtube-container"><iframe width="728" height="410" src="https://www.youtube.com/embed/'.$movie_code.'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></div>' . PHP_EOL. PHP_EOL;
-        $ret_data .= "<blockquote>{$movie_description}</blockquote>" . PHP_EOL. PHP_EOL;
+        $ret_data .= "<h2>{$rank}位.{$movie_title}</h2>" . PHP_EOL. PHP_EOL;
+        $ret_data .= '<iframe width="728" height="410" src="https://www.youtube.com/embed/'.$movie_code.'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>' . PHP_EOL. PHP_EOL;
+        $ret_data .= "<p>{$movie_description}</p>" . PHP_EOL. PHP_EOL;
 
     }catch(Exception $e){
             // echo $e->getMessage();
@@ -94,9 +94,9 @@ class CreateYoutubePost extends Command
 $author = implode('、',$movie_author);
 $title_author = implode('、',$title_author);
 
-$post_description = "今、{$title}というワードが人気で検索回数が急上昇中です。そこで、今回は{$title}に関する人気のYoutube動画をランキング形式でまとめてみました！" . PHP_EOL . PHP_EOL;
-$post_description .= "{$author}の動画がランキング入りしています！" . PHP_EOL;
-$post_title = "今話題の{$title}のYoutube動画TOP10を紹介！{$title_author}など";
+$post_description = "今、{$title}というワードが話題です。今回は{$title}に関する人気のYoutubeトップニュースをランキング形式でまとめてみました！" . PHP_EOL . PHP_EOL;
+$post_description .= "{$author}の動画を一挙に紹介していきます。！" . PHP_EOL;
+$post_title = "今話題の{$title}の動画TOP10を紹介。{$title_author}...";
 
 $content = $post_description.$ret_data; 
 $mail = [
@@ -104,7 +104,7 @@ $mail = [
     'content' => $content
 ];
 Mail::send('emails.welcome', array('content' => $content), function($message) use ($post_title,$content){
-    $message->to('knowrop1208.ymatome@gmail.com')
+    $message->to('knowrop1208.ymatome2@gmail.com')
     ->subject($post_title);
 });
 
