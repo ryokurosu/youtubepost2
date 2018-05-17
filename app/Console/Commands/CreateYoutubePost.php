@@ -71,6 +71,10 @@ class CreateYoutubePost extends Command
 
    $ret_data = "";
 
+    if(count($searchResponse['items']) < 3){
+    return false;
+  }
+
    foreach($searchResponse['items'] as $index => $item){
     try{
         $movie_code = $item['id']['videoId'];
