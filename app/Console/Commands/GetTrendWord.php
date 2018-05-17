@@ -57,5 +57,24 @@ class GetTrendWord extends Command
                 echo $e->getMessage();
             }
         });
+
+        
+        $twitter = "https://tr.twipple.jp/rss/hotword.xml";
+
+        $client = new Client();
+        $crawler = $client->request('GET',$twitter);
+
+        $crawler->filter('item')->each(function($node){
+            try{
+
+                $title = $node->filter("title")->text();
+                if(!Word::where('text',$title)->first()){
+                    Word::create(['text' => $title]);
+                    echo $title." done".PHP_EOL;
+                }
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }
+        });
     }
 }
